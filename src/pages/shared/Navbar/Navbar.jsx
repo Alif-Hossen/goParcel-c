@@ -1,6 +1,5 @@
-import React from 'react';
-import Logo from '../../../components/Logo/Logo';
 import { NavLink } from 'react-router';
+import Logo from '../../../components/Logo/Logo';
 import useAuth from '../../../hooks/useAuth';
 
 const Navbar = () => {
@@ -20,7 +19,7 @@ const Navbar = () => {
         <li><NavLink to="/coverage">Coverage</NavLink></li>
         <li><NavLink to="/send_parcel">Send parcel</NavLink></li>
         <li><NavLink to="/aboutUs">About Us</NavLink></li>
-        <li><NavLink to="">Pricing</NavLink></li>
+        <li><NavLink to="/pricing">Pricing</NavLink></li>
         <li><NavLink to="/rider">Be a Rider</NavLink></li>
 
         {

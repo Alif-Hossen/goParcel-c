@@ -39,8 +39,21 @@ const AuthProvider = ({children}) => {
     // OBSERVE USER STATE -->
 
     useEffect(( ) => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+        const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
             setUser(currentUser);
+            if (currentUser) {
+                // Fetch user role
+                const token = await currentUser.getIdToken();
+                axios.get('http://localhost:3000/user/me', {
+                    headers: {
+                        authorization: `Bearer ${token}`
+                    }
+                })
+                .then(res => setRole(res.data.role))
+                .catch(err => console.log(err));
+            } else {
+                setRole(null);
+            }
             setLoading( false );
         })
         return () => {
@@ -49,41 +62,24 @@ const AuthProvider = ({children}) => {
 
     }, [])
 
-    // FETCH USER ROLE
-    useEffect(() => {
-        if (user?.email) {
-            axios.get(`http://localhost:3000/users/role/${user.email}`)
-                .then(res => {
-                    setRole(res.data.role);
-                })
-                .catch(err => {
-                    console.log(err);
-                    setRole('user'); // default to user
-                })
-        } else {
-            setRole(null);
-        }
-    }, [user])
-
     const authInfo = {
         user,
         loading,
+        role,
         registerUser,
         signInUser,
         signInGoogle,
         logOut,
         updateUserProfile,
-        role,
-        isAdmin: role === 'admin'
         
 
         
     }
 
     return (
-        <AuthContext value={authInfo}>
+        <AuthContext.Provider value={authInfo}>
             {children}
-        </AuthContext>
+        </AuthContext.Provider>
     );
 };
 

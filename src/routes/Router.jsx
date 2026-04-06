@@ -3,7 +3,6 @@ import AuthLayout from "../layouts/AuthLayout";
 import DashboardLayout from "../layouts/DashboardLayout";
 import RootLayout from "../layouts/RootLayout";
 import AboutUs from "../pages/AboutUs/AboutUs";
-import Admin from "../pages/Admin/Admin";
 import Login from "../pages/Auth/Login/Login";
 import Register from "../pages/Auth/register/register";
 import BeARider from "../pages/BeARider/BeARider";
@@ -15,9 +14,9 @@ import PaymentSuccess from "../pages/Dashboard/Payment/PaymentSuccess";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home/Home";
+import Pricing from "../pages/Pricing/Pricing";
 import Rider from "../pages/Rider/Rider";
 import SendParcel from "../pages/SendParcel/SendParcel";
-import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
@@ -39,6 +38,10 @@ export const router = createBrowserRouter([
                 path: "coverage",
                 element: <Coverage></Coverage>,
                 loader: () => fetch('/serviceCenter.json').then(res => res.json())
+            },
+            {
+                path: "pricing",
+                element: <Pricing></Pricing>
             },
             {
                 path:"aboutUs",
@@ -92,10 +95,6 @@ export const router = createBrowserRouter([
             {
                 path: 'payment-cancelled',
                 element: <PaymentCancelled></PaymentCancelled>
-            },
-            {
-                path: 'admin',
-                element: <AdminRoute> <Admin></Admin> </AdminRoute>
             }
         ]
     }
