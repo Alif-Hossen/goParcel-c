@@ -9,3 +9,4 @@ const Rider = () => {
 };
 
 export default Rider;
+//Rider can Accept or Reject a delivery"
