@@ -45,5 +45,5 @@ const Footer = () => {
         </footer>
     );
 };
-
+//Rider can Accept or Reject a delivery"
 export default Footer;
