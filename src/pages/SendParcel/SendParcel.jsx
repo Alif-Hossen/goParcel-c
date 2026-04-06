@@ -279,5 +279,3 @@ const SendParcel = () => {
 };
 
 export default SendParcel;
-
-// file copied
